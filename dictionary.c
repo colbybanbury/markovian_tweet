@@ -1,12 +1,7 @@
 #include <stdio.h>
+#include <string.h>
+#include "dictionary.h"
 
-struct nlist { /* table entry: */
-    struct nlist *next; /* next entry in chain */
-    char *name; /* word  */
-    int *occurances; /* number of occurances */
-};
-
-#define HASHSIZE 101
 static struct nlist *hashtab[HASHSIZE]; /* pointer table */
 
 /* hash: form hash value for string s */
@@ -28,7 +23,6 @@ struct nlist *lookup(char *s)
     return NULL; /* not found */
 }
 
-char *strdup(char *);
 /* install: put (name, defn) in hashtab */
 struct nlist *insert(char *name)
 {
@@ -51,11 +45,3 @@ struct nlist *insert(char *name)
     return np;
 }
 
-char *strdup(char *s) /* make a duplicate of s */
-{
-    char *p;
-    p = (char *) malloc(strlen(s)+1); /* +1 for ’\0’ */
-    if (p != NULL)
-       strcpy(p, s);
-    return p;
-}
