@@ -1,6 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "dictionary.h"
+
+#define HASHSIZE 101
 
 static struct nlist *hashtab[HASHSIZE]; /* pointer table */
 
@@ -33,8 +36,8 @@ struct nlist *insert(char *name)
         if (np == NULL || (np->name = strdup(name)) == NULL)
           return NULL;
 
-        if (np == NULL || (np->occurances = 1) == NULL)
-          return NULL;
+        np->occurances = 1;
+        
         hashval = hash(name);
         np->next = hashtab[hashval];
         hashtab[hashval] = np;

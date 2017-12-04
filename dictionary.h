@@ -6,7 +6,7 @@
 struct nlist { /* table entry: */
     struct nlist *next; /* next entry in chain */
     char *name; /* word  */
-    int *occurances; /* number of occurances */
+    int occurances; /* number of occurances */
 };
 
 unsigned hash(char *s);

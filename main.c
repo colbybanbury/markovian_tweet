@@ -3,5 +3,14 @@
 #include "dictionary.h"
 
 int main(){
+    insert("fish");
+    insert("fish");
+    insert("fish");
+
+    struct nlist *n;
+    
+    n = lookup("fish");
+    printf("%d", n->occurances);
+
     return 0;
 }
