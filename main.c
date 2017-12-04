@@ -10,7 +10,7 @@ int main(){
     struct nlist *n;
     
     n = lookup("fish");
-    printf("%d", n->occurances);
+    printf("%d\n", n->occurances);
 
     return 0;
 }
