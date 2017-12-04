@@ -30,7 +30,7 @@ struct nlist *lookup(char *s)
 
 char *strdup(char *);
 /* install: put (name, defn) in hashtab */
-struct nlist *install(char *name, char *defn)
+struct nlist *insert(char *name)
 {
     struct nlist *np;
     unsigned hashval;
@@ -38,13 +38,16 @@ struct nlist *install(char *name, char *defn)
         np = (struct nlist *) malloc(sizeof(*np));
         if (np == NULL || (np->name = strdup(name)) == NULL)
           return NULL;
+
+        if (np == NULL || (np->occurances = 1) == NULL)
+          return NULL;
         hashval = hash(name);
         np->next = hashtab[hashval];
         hashtab[hashval] = np;
-    } else /* already there */
-        free((void *) np->occurances); /*free previous defn */
-    if ((np->occurances = strdup(defn)) == NULL)
-       return NULL;
+    }
+    else{ /* already there */
+        np->occurances += 1; /*increment occurances*/
+    }
     return np;
 }
 
