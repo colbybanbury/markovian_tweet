@@ -9,8 +9,6 @@
 
 using namespace std;
 
-
-
 map<string, vector<string> > table;
 
 void createMap(deque<string> sampleText){
@@ -29,18 +27,21 @@ void createMap(deque<string> sampleText){
 	}
 }
 
-deque<string> generateOutput(int numWords){
+deque<string> generateOutput(int numChar){
 	srand (time(NULL));
+	int charTotal = 0;
 	deque<string> output;
 	string currentWord;
 	int i;
 	vector<string> nextWordVector = table["~start~"];
-	while(output.size()<numWords){
+	while(charTotal < numChar){
 		i = rand() % nextWordVector.size();
 		currentWord = nextWordVector[i];
 		if(currentWord == "~end~"){return output;}
+		charTotal += currentWord.length();
 		output.push_front(currentWord);
 		nextWordVector = table[currentWord];
 	}
 	return output;
 }
+
