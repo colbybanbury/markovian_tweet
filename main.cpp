@@ -28,6 +28,8 @@ void createMap(deque<string> sampleText){
 }
 
 deque<string> generateOutput(int numChar){
+	//this function randomly generates a deque<string> that forms a new sentace based\
+	on the created map
 	srand (time(NULL));
 	int charTotal = 0;
 	deque<string> output;
@@ -45,3 +47,10 @@ deque<string> generateOutput(int numChar){
 	return output;
 }
 
+void printOutput(deque<string> output){
+	//takes a deque<string> and prints it out word by word
+	while(output.size()>0){
+		cout << output.front() << " ";
+		output.pop_front();
+	}
+}
