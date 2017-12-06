@@ -54,3 +54,15 @@ void printOutput(deque<string> output){
 		output.pop_front();
 	}
 }
+
+int main(int argc, char *argv[]) {
+	if(argc == 2){
+		deque<string> input = generateOutput(argv[1]);
+		createMap(input);
+		deque<string> output = generateOutput();
+		printOutput(output);
+	}
+	else{
+		cout << "enter the name of the file you would like to read from as a command line arguement" << "\n";
+	}
+}
