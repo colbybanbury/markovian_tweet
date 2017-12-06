@@ -1,6 +1,7 @@
 #include <stdio.h>     
 #include <stdlib.h> 
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <deque>
 #include <map>
@@ -43,5 +44,45 @@ deque<string> generateOutput(int numChar){
 		nextWordVector = table[currentWord];
 	}
 	return output;
+}
+
+deque<string> generateSampleText(string filename){
+  ifstream inputFile;
+  inputFile.open(filename);
+  string word;
+  deque<string> output;
+  output.push_back((string)"~start~");
+  while(getline(inputFile,word,' ')){
+    while(word.size()>0 && word[word.size()-1]=='\n'){
+      word = word.substr(0,word.size()-1);
+    }
+    int i = word.size() - 1;
+    cout << word[i] << endl;
+    while(word[i] == '!' ||
+          word[i] == '?' ||
+          word[i] == '.' ){
+      i--;
+    }
+    i++;
+    if(i == word.size()){
+      output.push_back(word);
+    }
+    else {
+      output.push_back(word.substr(0,i));
+      output.push_back(word.substr(i,word.size()));
+      output.push_back((string)"~end~");
+      output.push_back((string)"~start~");
+    }
+  }
+  inputFile.close();
+  return output;
+}
+
+int main(void){
+  deque<string> result = generateSampleText("input.txt");
+  for (int i=0; i<result.size(); i++){
+    cout << result[i] << endl;
+  }
+  return 0;
 }
 

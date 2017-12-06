@@ -1,4 +1,4 @@
-CC = gcc
+CC = g++
 CFLAGS = -g
 OBJS = dictionary.o main.o
 EXEC = tweet
