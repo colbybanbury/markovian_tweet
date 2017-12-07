@@ -1,6 +1,7 @@
 #include <stdio.h>     
 #include <stdlib.h> 
 #include <iostream>
+#include <fstream>
 #include <map>
 #include <vector>
 #include <time.h>
@@ -10,6 +11,25 @@
 using namespace std;
 
 map<string, vector<string> > table;
+
+deque<string> generateInput(string fileName){
+	deque<string> input;
+	ifstream file;
+	file.open(fileName);
+	if (file.is_open()){
+		input.push_back("~start~");
+		string word;
+		while(file >> word){
+			input.push_back(word);
+			char lastChar = word.back();
+			if(lastChar == '.' || lastChar == '!' || lastChar == '?'){
+				input.push_back("~end~");
+			}
+		}
+		input.push_back("~end~");
+	}
+	return input;
+}
 
 void createMap(deque<string> sampleText){
 	//this function takes in a deque of strings in the order that they \

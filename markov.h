@@ -3,7 +3,7 @@
 
 using namespace std;
 
-deque<string> generateInput(string input);
+deque<string> generateInput(string fileName);
 
 void createMap(deque<string> sampleText);
 
