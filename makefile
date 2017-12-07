@@ -1,10 +1,15 @@
-CC = gcc
+CC = g++
 CFLAGS = -g
-OBJS = dictionary.o main.o
-EXEC = tweet
+OBJS = markov.o 
+MAIN = main.o
+TEST = test.o
+EXEC = markov
 
-$(EXEC): $(OBJS)
-	$(CC) $^ -o $@
+$(EXEC): $(OBJS) $(MAIN)
+	$(CC) $(C_FLAGS) -o $@ $^
+
+test: $(TEST) $(OBJS)
+	$(CC) $(C_FLAGS) -o $@ $^
 
 clean:
-	rm $(EXEC) $(OBJS)
+	rm $(EXEC) $(OBJS) $(MAIN)
