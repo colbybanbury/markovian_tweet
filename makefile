@@ -1,5 +1,6 @@
 CC = g++
 CFLAGS = -g
+CXXFLAGS = -std=c++11 
 OBJS = markov.o 
 MAIN = main.o
 TEST = test.o

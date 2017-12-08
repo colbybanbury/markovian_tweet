@@ -15,7 +15,7 @@ map<string, vector<string> > table;
 deque<string> generateInput(string fileName){
 	deque<string> input;
 	ifstream file;
-	file.open(fileName);
+	file.open(fileName.c_str());
 	if (file.is_open()){
 		input.push_back("~start~");
 		string word;
@@ -24,6 +24,7 @@ deque<string> generateInput(string fileName){
 			char lastChar = word.back();
 			if(lastChar == '.' || lastChar == '!' || lastChar == '?'){
 				input.push_back("~end~");
+				input.push_back("~start~");
 			}
 		}
 		input.push_back("~end~");
