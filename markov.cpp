@@ -24,6 +24,7 @@ deque<string> generateInput(string fileName){
 			char lastChar = word.back();
 			if(lastChar == '.' || lastChar == '!' || lastChar == '?'){
 				input.push_back("~end~");
+				input.push_back("~start~");
 			}
 		}
 		input.push_back("~end~");
